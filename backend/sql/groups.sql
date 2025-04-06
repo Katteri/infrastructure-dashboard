@@ -1,5 +1,5 @@
 SELECT
-	grop_id, group_caption, node_caption,  node_color, node_description,
+	group_id, group_caption, node_caption,  node_color, node_description,
 	interface_caption,
 	s2.color as interface_color,
 	s2.description as interface_description,
@@ -7,7 +7,7 @@ SELECT
 	firstname, lastname, email	
 FROM
 	(SELECT
-	  g.id as grop_id,
+	  g.id as group_id,
 	  g.caption as group_caption,
 	  n.caption as node_caption,
 	  i.caption as interface_caption,

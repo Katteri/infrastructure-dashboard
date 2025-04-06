@@ -1,18 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchGroups, fetchMetrics } from '../api/api.js';
+import { fetchGroups, fetchMetrics } from './api/api.js';
 
-const getGroups = createAsyncThunk('groups/getGroups', async () => {
+export const getGroups = createAsyncThunk('groups/getGroups', async () => {
   const response = await fetchGroups();
   return response;
 });
 
-const getMetrics = createAsyncThunk('metrics/getMetrics', async () => {
+export const getMetrics = createAsyncThunk('metrics/getMetrics', async () => {
   const response = await fetchMetrics();
   return response;
 });
 
-const groupsSlice = createSlice({
+export const groupsSlice = createSlice({
   name: 'groups',
   initialState: {
     data: [],
