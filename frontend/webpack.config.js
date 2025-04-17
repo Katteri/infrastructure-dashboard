@@ -53,10 +53,15 @@ export default {
   },
   devServer: {
     static: path.resolve(dirname, 'dist'),
-    port: 9000,
+    port: 23400,
     hot: true,
     open: true,
-
+    proxy: [{
+      context: ['/api'], // Массив путей для проксирования
+      target: 'http://localhost:23456',
+      changeOrigin: true,
+      secure: false,
+    }],
   },
   ignoreWarnings: [
     {
