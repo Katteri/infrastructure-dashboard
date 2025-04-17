@@ -1,14 +1,23 @@
 import React from "react";
+import cn from "classnames";
 import { Button } from "react-bootstrap";
+import { useAppContext } from "./context/Context";
 
-const Group = ({ group, setActiveGroup }) => {
+const Group = ({ group }) => {
+  const { activeGroup, handleGroupClick } = useAppContext();
   const handleClick = (e) => {
     e.preventDefault();
-    setActiveGroup(group);
+    handleGroupClick(group);
   }
   return (
     <>
-      <Button variant='outline-secondary' onClick={handleClick}>{group.name}</Button>
+      <Button
+        variant='outline-primary'
+        className={cn({"active": group.id === activeGroup.id})}
+        onClick={handleClick}
+      >
+        {group.name}
+      </Button>
     </>
   );
 }

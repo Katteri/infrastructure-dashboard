@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import { ContextProvider } from "./context/Context";
+import { getGroups, getMetrics } from "../axios";
 import Groups from "./Groups";
 import Nodes from "./Nodes";
-import { getGroups, getMetrics } from "../axios";
+import Metrics from "./Metrics";
 
 const App = () => {
   const [groups, setGroups] = useState([]);
   const [metrics, setMetrics] = useState([]);
   const [onlyGroups, setOnlyGroups] = useState([]);
-  const [activeGroup, setActiveGroup] = useState(null);
 
   // получаем общую информацию о всех группах
   useEffect(() => {
@@ -38,13 +39,8 @@ const App = () => {
     setOnlyGroups(groupsWithIds);
   }, [groups]);
 
-  useEffect(() => {
-    console.log(activeGroup);
-
-  }, [activeGroup]);
-
   return (
-    <>
+    <ContextProvider>
       <Row>
         <Col>Группы</Col>
         <Col>Ноды</Col>
@@ -52,14 +48,16 @@ const App = () => {
       </Row>
       <Row>
         <Col className="d-flex flex-column justify-content-between align-items-center">
-          <Groups groups={onlyGroups} activeGroup={activeGroup} setActiveGroup={setActiveGroup}/>
+          <Groups groups={onlyGroups}/>
         </Col>
         <Col>
-          <Nodes activeGroup={activeGroup} groups={groups} metrics={metrics}/>
+          <Nodes groups={groups} metrics={metrics}/>
         </Col>
-        <Col></Col>
+        <Col>
+          <Metrics groups={groups} metrics={metrics}/>
+        </Col>
       </Row>
-    </>
+    </ContextProvider>
   );
 }
 

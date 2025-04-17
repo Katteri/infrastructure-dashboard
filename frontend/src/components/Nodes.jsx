@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import { useAppContext } from "./context/Context";
 
-const Nodes = ({ activeGroup, groups, metrics }) => {
+const Nodes = ({ groups, metrics }) => {
+  const { activeGroup, activeNode, handleNodeClick } = useAppContext();
   const [nodes, setNodes] = useState([]);
   const [nodesMetrics, setNodesMetrics] = useState([]);
-  const [activeNode, setActiveNode] = useState(null);
   const [metric, setMetric] = useState([]);
 
   useEffect(() => {
@@ -12,7 +13,6 @@ const Nodes = ({ activeGroup, groups, metrics }) => {
     const newNodesMetrics = metrics.filter(metric => metric.group_id === activeGroup.id);
     setNodes(newNodes);
     setNodesMetrics(newNodesMetrics);
-    console.log(newNodesMetrics.filter(metric => metric.node_id === 1).at(-1)?.cpu_utilization, activeGroup);
   }, [activeGroup]);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Nodes = ({ activeGroup, groups, metrics }) => {
         <Col>Утилизация</Col>
       </Row>
       <Row>
-      {nodes.map(node => <Row key={node.node_id} onClick={() => setActiveNode(node)}>
+      {nodes.map(node => <Row key={node.node_id} onClick={() => handleNodeClick(node)}>
           <Col>{node.node_caption}</Col>
           <Col>
             <Row>
