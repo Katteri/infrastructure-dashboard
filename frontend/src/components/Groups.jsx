@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Row } from "react-bootstrap";
 import Group from './Group';
 
 const Groups = ({ groups }) => {
   const [content, setContent] = useState(null);
   useEffect(() => {
     const newContent = (
-      <ListGroup className="pt-5 w-100">
+      <ListGroup className="w-100 h-100">
         {groups.map(group => <Group key={group.id} group={group}/>)}
       </ListGroup>
     );
@@ -14,7 +14,7 @@ const Groups = ({ groups }) => {
   }, [groups]);
   return (
     <>
-      {content}
+      {content? content: <Row className="align-self-center">Группы не найдены</Row>}
     </>
   );
 }

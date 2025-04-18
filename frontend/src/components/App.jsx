@@ -47,7 +47,7 @@ const App = () => {
         <Col>МЕТРИКИ</Col>
       </Row>
       <Row className="py-2 px-4 w-100">
-        <Col className="d-flex flex-column justify-content-between align-items-center">
+        <Col className="pt-2 d-flex flex-column justify-content-evenly align-items-center">
           <Groups groups={onlyGroups}/>
         </Col>
         <Col className="d-flex flex-column">
