@@ -12,8 +12,8 @@ const Group = ({ group }) => {
   return (
     <>
       <Button
-        variant='outline-primary'
-        className={cn({"active": group.id === activeGroup.id})}
+        variant='outline-secondary'
+        className={cn("my-3 mx-5 py-3", {"active": group.id === activeGroup.id})}
         onClick={handleClick}
       >
         {group.name}

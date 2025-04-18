@@ -1,16 +1,20 @@
-import React, { useEffect } from "react";
-import { useAppContext } from "./context/Context";
+import React, { useState, useEffect } from "react";
+import { ListGroup } from "react-bootstrap";
 import Group from './Group';
 
 const Groups = ({ groups }) => {
-  const { activeGroup } = useAppContext();
+  const [content, setContent] = useState(null);
   useEffect(() => {
-    
-  }, [activeGroup]);
-
+    const newContent = (
+      <ListGroup className="pt-5 w-100">
+        {groups.map(group => <Group key={group.id} group={group}/>)}
+      </ListGroup>
+    );
+    setContent(newContent);
+  }, [groups]);
   return (
     <>
-      {groups.map(group => <Group key={group.id} group={group}/>)}
+      {content}
     </>
   );
 }

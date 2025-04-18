@@ -41,19 +41,19 @@ const App = () => {
 
   return (
     <ContextProvider>
-      <Row className="text-center">
-        <Col>Группы</Col>
-        <Col>Ноды</Col>
-        <Col>Метрики</Col>
+      <Row className="py-5 text-center fw-light fs-4 w-100">
+        <Col>ГРУППЫ</Col>
+        <Col>НОДЫ</Col>
+        <Col>МЕТРИКИ</Col>
       </Row>
-      <Row>
+      <Row className="py-2 px-4 w-100">
         <Col className="d-flex flex-column justify-content-between align-items-center">
           <Groups groups={onlyGroups}/>
         </Col>
-        <Col>
+        <Col className="d-flex flex-column">
           <Nodes groups={groups} metrics={metrics}/>
         </Col>
-        <Col>
+        <Col className="d-flex flex-column justify-content-between align-items-center">
           <Metrics groups={groups} metrics={metrics}/>
         </Col>
       </Row>

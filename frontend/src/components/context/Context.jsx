@@ -7,7 +7,6 @@ export const useAppContext = () => useContext(AppContext);
 export const ContextProvider = ({ children }) => {
   const [activeGroup, setActiveGroup] = useState([]);
   const [activeNode, setActiveNode] = useState(null);
-  const [activeMetric, setActiveMetric] = useState(null);
 
   const handleGroupClick = (group) => {
     setActiveGroup(group);
@@ -17,12 +16,8 @@ export const ContextProvider = ({ children }) => {
     setActiveNode(node);
   };
 
-  const handleMetricClick = (metric) => {
-    setActiveMetric(metric);
-  };
-
   return (
-    <AppContext.Provider value={{activeGroup, activeNode, activeMetric, handleGroupClick, handleNodeClick, handleMetricClick}}>
+    <AppContext.Provider value={{activeGroup, activeNode, handleGroupClick, handleNodeClick}}>
       {children}
     </AppContext.Provider>
   );
