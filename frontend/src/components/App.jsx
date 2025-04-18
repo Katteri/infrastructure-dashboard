@@ -41,7 +41,7 @@ const App = () => {
 
   return (
     <ContextProvider>
-      <Row>
+      <Row className="text-center">
         <Col>Группы</Col>
         <Col>Ноды</Col>
         <Col>Метрики</Col>
